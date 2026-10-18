@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AJ Smarters TV</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="AJ Smarters TV">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="activation-screen" class="screen active">
+        <div class="activation-box">
+            <img src="icons/AJ_Smarters_TV_Roku_540x405.png" alt="AJ Smarters TV" class="logo">
+            <h1>AJ Smarters TV</h1>
+            <p class="subtitle">Digite o código de ativação</p>
+            <input type="password" id="activation-code" placeholder="••••" maxlength="4">
+            <button id="btn-activate" class="btn-primary">Entrar</button>
+        </div>
+    </div>
+
+    <div id="login-screen" class="screen">
+        <div class="login-box">
+            <h2>Conectar Servidor</h2>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="xtream">Xtream Codes</button>
+                <button class="tab-btn" data-tab="m3u">Lista M3U</button>
+            </div>
+            <div id="xtream-form" class="tab-content active">
+                <input type="url" id="server-url" placeholder="URL do Servidor">
+                <input type="text" id="username" placeholder="Usuário">
+                <input type="password" id="password" placeholder="Senha">
+                <button id="btn-connect" class="btn-primary">Conectar</button>
+            </div>
+            <div id="m3u-form" class="tab-content">
+                <p class="hint">Cole o link da sua lista ou faça upload do arquivo</p>
+                <input type="url" id="m3u-url" placeholder="URL da lista .m3u" style="margin-bottom: 10px;">
+                <div class="divider">ou</div>
+                <input type="file" id="m3u-file" accept=".m3u,.m3u8">
+                <button id="btn-load-m3u" class="btn-primary">Carregar Lista</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-screen" class="screen">
+        <header class="app-header">
+            <h1 class="app-title">AJ Smarters TV</h1>
+            <div class="header-actions">
+                <button id="search-btn" class="icon-btn">🔍</button>
+                <button id="favorites-btn" class="icon-btn">⭐</button>
+                <button id="disconnect-btn" class="icon-btn">🚪</button>
+            </div>
+        </header>
+        <nav class="category-nav">
+            <button class="cat-btn active" data-view="live">📺 TV ao Vivo</button>
+            <button class="cat-btn" data-view="movies">🎬 Filmes</button>
+            <button class="cat-btn" data-view="series">📽️ Séries</button>
+            <button class="cat-btn" data-view="games">⚽ Jogos</button>
+            <button class="cat-btn" data-view="epg">📅 Guia</button>
+        </nav>
+        <main class="content" id="content-area">
+            <div id="live-view" class="view active">
+                <div class="search-box">
+                    <input type="text" id="channel-search" placeholder="Buscar canal...">
+                </div>
+                <div id="channels-list" class="grid-list"></div>
+            </div>
+            <div id="movies-view" class="view">
+                <div class="search-box">
+                    <input type="text" id="movie-search" placeholder="Buscar filme...">
+                </div>
+                <div id="movies-list" class="grid-list"></div>
+            </div>
+            <div id="series-view" class="view">
+                <div class="search-box">
+                    <input type="text" id="series-search" placeholder="Buscar série...">
+                </div>
+                <div id="series-list" class="grid-list"></div>
+            </div>
+            <div id="games-view" class="view">
+                <h3>⚽ Jogos de Hoje</h3>
+                <div id="games-list"><p class="empty-text">Carregando jogos...</p></div>
+            </div>
+            <div id="epg-view" class="view">
+                <h3>📅 Guia de Programação</h3>
+                <div id="epg-content"><p class="empty-text">Selecione um canal para ver a programação</p></div>
+            </div>
+        </main>
+    </div>
+
+    <div id="player-modal" class="modal">
+        <div class="player-container">
+            <video id="video-player" controls playsinline></video>
+            <button id="close-player" class="close-btn">✕</button>
+            <div class="player-info">
+                <h3 id="current-title">Canal</h3>
+                <p id="current-desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <button id="install-pwa" class="install-btn" style="display:none;">⬇️ Instalar App</button>
+    <script src="app.js"></script>
+</body>
+</html>
