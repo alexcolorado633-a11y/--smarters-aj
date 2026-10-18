@@ -11,17 +11,23 @@ function showScreen(screenId) {
 }
 
 document.getElementById('btn-activate').addEventListener('click', () => {
-    const input = document.getElementById('activation-code').value;
+    const input = document.getElementById('btn-activate').addEventListener('click', () => {
+    const input = document.getElementById('activation-code').value.trim();
     const savedCode = localStorage.getItem('activation_code');
+    
+    console.log('Código digitado:', input);
+    console.log('Código esperado:', ACTIVATION_CODE);
+    
     if (savedCode === ACTIVATION_CODE) {
         verificarLoginSalvo();
     } else if (input === ACTIVATION_CODE) {
         localStorage.setItem('activation_code', ACTIVATION_CODE);
         showScreen('login-screen');
     } else {
-        alert('Código incorreto!');
+        alert('Código incorreto! Você digitou: "' + input + '" — Digite: 4103');
     }
 });
+
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
